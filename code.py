@@ -1,3 +1,4 @@
+
 import math
 import numpy
 
@@ -5,7 +6,7 @@ def han2(n):
 	j=0
 	while True:
 		n=n/2
-		if n==1:
+		if n==1 or n==0:
 			break
 		else:
 			j=j+1
@@ -24,16 +25,16 @@ def uknaiseki(i):
 m=2
 k=1
 n=2**m+k
-l=1000
+l=100 
 T=10.0
 drift=0.5
-sigma2=0.2
-X=[0]*(l+1)
-Y=[0]*(l+1)
+sigma=0.2
+X=[0]*(l+2)
+Y=[0]*(l+2)
 W=[0]*(n)
 Z=[0]*(n)
 b=[0]*(n)
-h= [[0] * (l+1) for i in range(n)]
+h= [[0] * (l+2) for i in range(n)]
 lam=[0]*n
 delta_t=T/l
 vol_t=delta_t**(1/2)
@@ -58,13 +59,14 @@ for i in range(n):
 gx=0
 for i in range(n):
 	gx=gx+(b[i]+Z[i])**2
-malliavin_derive=[0]*(l+1)
+malliavin_delive=[0]*(l+1)
 drift_estimator=[0]*(l+1)
 for j in range(l+1):
+	de_sum=0
 	for i in range(n):
 		de_sum=de_sum+gx**((2-n)/2-1)*(b[i]+2*lam[i])*sigma**2*h[i][j]/lam[i]
 	malliavin_delive[j]=de_sum/gx**((2-n)/2)
 	drift_estimator[j]=malliavin_delive[j]+X[j]
 print X
 print malliavin_delive
-print estimator_drift
+print drift_estimator
