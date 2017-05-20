@@ -21,9 +21,8 @@ def uknaiseki(i):
 		integralL2=integralL2+h[i][j+1]*X[j+1]*delta_t
 	return integralL2
 
-m=6
-k=2
-n=2**m+k
+
+n=100
 l=1000
 T=10.0
 drift=0.5
