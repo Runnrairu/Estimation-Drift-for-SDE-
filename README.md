@@ -4,12 +4,13 @@
 <img src="https://latex.codecogs.com/gif.latex?dX_t=\dot{u}_tdt+\sigma&space;dW_t" />
 σは既知であるとして、このような確率微分方程式に対してuのシュタイン推定量をノンパラメトリックで構成したい。
 <img src="https://latex.codecogs.com/gif.latex?E[X_t]=u_t" />
-が明らかに成り立つため、これは平均値の推定と等しい
+が明らかに成り立つため、これは平均値の推定と等しい。  
+
 非可算無限次元のガウス型確率変数に対してのシュタイン推定は、マリアヴァン解析を用いて定式化される
 d次元ガウス型確率変数(d>2)の値Xを観測したうえで、平均値のシュタイン推定量はこう書ける  
 <img src="https://latex.codecogs.com/gif.latex?\hat{\mu}=X+\frac{2-d}{||X||}X" />
 
-それに対して、連続時間ガウス過程(すなわち実数濃度の個数のガウス型確率変数)に対しては、平均値uのシュタイン推定量はこう書ける。
+それに対して、連続時間ガウス過程(すなわち実数濃度の個数のガウス型確率変数)に対しては、平均値uのシュタイン推定量はこうなる。
 
 <img src="https://latex.codecogs.com/gif.latex?\hat{u}=X_t+D_tlogF" />
 
