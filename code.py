@@ -47,15 +47,16 @@ delta_W = np.random.normal(0,sigma_t,m)#ブラウン運動実装用の乱数
 for i in range(m):#サンプルパスの実装
     t=t+delta_t
     X[i+1]=X[i]+drift(t)*delta_t+sigma*delta_W[i]
-plt.plot(np.absolute(X))
+    loss[i]=np.absolute(X[i]-drift(t))
+plt.plot(loss)
 for l in range(2):#近似の次元をあげていく
-    n=l+1
+    n=l+5
     X_h = np.random.normal(0,1,n)#ここの役割について詳しくは文献[1]を参照
     Pi_n_norm=Pi_n_L2norm(n,X)
     for i in range(m):#推定量の構成と誤差の計測
         t=i*T/m
         uhat[i]=X[i]-(n-2)*Pi_n_X(t,n,X)/Pi_n_norm
-        loss[i]=np.absolute(uhat[i]-drift(i*T/m))
+        loss[i]=np.absolute(uhat[i]-drift(t))
     plt.plot(loss)#誤差の表示
     n += 1
 plt.show()
