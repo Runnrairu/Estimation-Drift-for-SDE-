@@ -4,6 +4,7 @@
 <img src="https://latex.codecogs.com/gif.latex?dX_t=\dot{u}_tdt+\sigma&space;dW_t" />
 σは既知であるとして、このような確率微分方程式に対してuのシュタイン推定量をノンパラメトリックで構成したい。
 <img src="https://latex.codecogs.com/gif.latex?E[X_t]=u_t" />
+
 が明らかに成り立つため、これは平均値の推定と等しい。  
 
 非可算無限次元のガウス型確率変数に対してのシュタイン推定は、マリアヴァン解析を用いて定式化される
