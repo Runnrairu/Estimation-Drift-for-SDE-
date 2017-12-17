@@ -14,7 +14,7 @@ d次元ガウス型確率変数(d>2)の値Xを観測したうえで、平均値�
 ただしD_tはマリアヴァン微分である。Fの具体的な構成や証明に関しては[1]、マリアヴァン微分については[2][3]、数値計算におけるブラウン運動の構成については[4]を参照した
 
 
-##参考文献
+##参考文献  
 [1] NICOLAS PRIVAULT,ANTHONY RÉVEILLAC,STEIN ESTIMATION FOR THE DRIFT OF GAUSSIAN PROCESSES USING THE MALLIAVIN CALCULUS(2008)  
 [2]重川一郎,確率解析(2008)  
 [3]Giulia Di Nunno,Bernt Øksendal,Frank Proske,Malliavin Calculus for Lévy Processes with Applications to Finance(2009)  
