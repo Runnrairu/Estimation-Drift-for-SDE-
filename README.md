@@ -1,7 +1,8 @@
 # Estimation-of-the-Drift-for-SDE-
 ## ドリフト推定
-次のような[0,T]区間上の確率微分方程式を考える。
+次のような[0,T]区間上の確率微分方程式を考える。  
 <img src="https://latex.codecogs.com/gif.latex?dX_t=\dot{u}_tdt+\sigma&space;dW_t" />
+
 σは既知であるとして、このような確率微分方程式に対してuのシュタイン推定量をノンパラメトリックで構成したい。
 <img src="https://latex.codecogs.com/gif.latex?E[X_t]=u_t" />
 
