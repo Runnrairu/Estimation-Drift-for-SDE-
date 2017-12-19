@@ -8,22 +8,26 @@ def h(n,t):#カメロンマルティン空間の基底（詳しくは参考文�
     insin=(n-0.5)*np.pi*t/T
     return np.power(2*T,0.5)*np.sin(insin)/(sigma*np.pi*(n-0.5))
 
+def h_dot(n,t):#基底の微分を表記する（詳しくは参考文献[1][4]を参照）
+    incos=(n-0.5)*np.pi*t/T
+    return np.power(2/T,0.5)*np.cos(incos)/sigma
+    
 def lamda(n):#基底の固有値（詳しくは参考文献[1][4]を参照）
     return sigma*T/(np.pi*(n-0.5))
 
-
-def L2_innerproduct(X,n):#関数とカメロンマルティンのn番目の基底とのL^2内積を計算する
-    innerproduct=0
-    for i in range(m):
-        innerproduct += X[i]*h(n,i*m/T)*delta_t
-    return innerproduct
+def X_h(k):#独自の工夫ポイント。カメロンマルティンの元の微分を定義関数で近似したうえでXの線形性に頼る
+    sum=0
+    for i in range(m-1):
+        t=i*T/m
+        sum += h_dot(k,t)*(X[i+1]-X[i])
+    return sum
 
 def Pi_n_X(t,n,X):#ここの役割については文献[1]を参照。この実装の核である
     sum=0
     for j in range(n):
         k=j+1
         lam_k=lamda(k)
-        sum += (L2_innerproduct(X,k)+X_h[j])*np.power(sigma,2)*h(k,t)/np.power(lam_k,2)
+        sum += X_h(k)*sigma*h(k,t)/lam_k
     return sum
 
 def Pi_n_L2norm(n,X):
@@ -32,7 +36,6 @@ def Pi_n_L2norm(n,X):
         t=i*T/m
         norm += np.power(Pi_n_X(t,n,X),2)*delta_t
     return norm
-
 
 T=1.0#終端時刻
 sigma=1#σの値
@@ -49,9 +52,8 @@ for i in range(m):#サンプルパスの実装
     X[i+1]=X[i]+drift(t)*delta_t+sigma*delta_W[i]
     loss[i]=np.absolute(X[i]-drift(t))
 plt.plot(loss)
-for l in range(2):#近似の次元をあげていく
-    n=l+5
-    X_h = np.random.normal(0,1,n)#ここの役割について詳しくは文献[1]を参照
+for l in range(3):#近似の次元をあげていく
+    n=l+10
     Pi_n_norm=Pi_n_L2norm(n,X)
     for i in range(m):#推定量の構成と誤差の計測
         t=i*T/m
@@ -60,6 +62,3 @@ for l in range(2):#近似の次元をあげていく
     plt.plot(loss)#誤差の表示
     n += 1
 plt.show()
-    
-
-
