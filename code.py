@@ -53,7 +53,7 @@ for l in range(monte_count):#モンテカルロのプログラム
 
     for i in range(m):#推定量の構成と誤差の計測
         t=(i+1)*T/m
-        D_t_logF=0
+        D_t_logF=0 #時刻tにおけるシュタイン推定の補正項
         for k in range(n):
             D_t_logF += X_h_array[k]*np.sin((k+1-0.5)*np.pi*t/T)
         D_t_logF = D_t_logF*(n-2)*np.power(2/T,0.5)/denominator
