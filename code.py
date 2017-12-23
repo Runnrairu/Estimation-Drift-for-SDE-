@@ -35,7 +35,7 @@ loss_X = [0]*(m) #最尤推定の平均二乗誤差の記録用配列
 loss_XDF = [0]*(m) #シュタイン推定の平均二乗誤差の記録用配列
 delta_t = T/m  #Δt
 sigma_t = np.power(delta_t,0.5)#ブラウン運動実装のための標準偏差計算
-monte_count=100 #モンテカルロ法を回す回数
+monte_count=1000 #モンテカルロ法を回す回数
 
 for l in range(monte_count):#モンテカルロのプログラム
     n=5 #近似の次元は5とした（カメロンマルティン空間は無限次元なので、どんなに増やしても完璧ではない）
@@ -59,6 +59,10 @@ for l in range(monte_count):#モンテカルロのプログラム
         D_t_logF = D_t_logF*(n-2)*np.power(2/T,0.5)/denominator
         uhat[i]=X[i]-D_t_logF
         loss_XDF[i] += np.power(uhat[i]-drift(t),2)/monte_count
-plt.plot(loss_X)#最尤推定量の平均二乗誤差の表示
-plt.plot(loss_XDF) #シュタイン推定量の平均二乗誤差の表示
+plt.plot(loss_X,label="maximum likely")#最尤推定量の平均二乗誤差の表示
+plt.plot(loss_XDF,label="Stein") #シュタイン推定量の平均二乗誤差の表示
+plt.legend()
+plt.title("numeric")
+plt.xlabel("time")
+plt.ylabel("L^2-loss")
 plt.show()
